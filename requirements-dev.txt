@@ -1,0 +1,6 @@
+# Development / test tooling (versions used for the reported results).
+-r requirements.txt
+pytest==9.2.0
+pytest-cov==7.1.0
+ruff==0.17.4
+mypy==2.4.1

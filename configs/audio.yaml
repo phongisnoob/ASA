@@ -1,0 +1,13 @@
+# Audio preparation settings.
+audio:
+  target_sample_rate: 16000      # set per the selected aligner/acoustic model, not assumed
+  channels: 1
+  output_format: wav
+  subtype: PCM_16
+  preserve_original: true        # must stay true: originals are never modified
+  stereo_to_mono: mean           # mean | left | right | reject
+  supported_extensions: [".wav", ".flac", ".ogg", ".mp3"]
+  min_duration_s: 0.1
+  max_duration_s: 300
+  min_source_sample_rate: 8000
+  max_clipping_fraction: 0.01    # above this a *warning* is raised (audio is never altered for it)

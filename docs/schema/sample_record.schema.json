@@ -1,0 +1,978 @@
+{
+  "$defs": {
+    "AlignmentMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "aligner": {
+          "default": "none",
+          "title": "Aligner",
+          "type": "string"
+        },
+        "aligner_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Aligner Version"
+        },
+        "granularity": {
+          "default": "none",
+          "enum": [
+            "phone",
+            "word",
+            "none"
+          ],
+          "title": "Granularity",
+          "type": "string"
+        },
+        "status": {
+          "default": "not_run",
+          "enum": [
+            "success",
+            "partial",
+            "failed",
+            "not_run"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "time_unit": {
+          "const": "seconds",
+          "default": "seconds",
+          "title": "Time Unit",
+          "type": "string"
+        },
+        "model": {
+          "additionalProperties": true,
+          "title": "Model",
+          "type": "object"
+        },
+        "command": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Command"
+        },
+        "notes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "qc_summary": {
+          "additionalProperties": true,
+          "title": "Qc Summary",
+          "type": "object"
+        }
+      },
+      "title": "AlignmentMetadata",
+      "type": "object"
+    },
+    "CanonicalPhone": {
+      "additionalProperties": false,
+      "description": "One phone of the *resolved* canonical sequence (words with a selected variant only).",
+      "properties": {
+        "index": {
+          "minimum": 0,
+          "title": "Index",
+          "type": "integer"
+        },
+        "word_index": {
+          "minimum": 0,
+          "title": "Word Index",
+          "type": "integer"
+        },
+        "token": {
+          "title": "Token",
+          "type": "string"
+        },
+        "variant_id": {
+          "title": "Variant Id",
+          "type": "string"
+        },
+        "base_phone": {
+          "title": "Base Phone",
+          "type": "string"
+        },
+        "phone_id": {
+          "title": "Phone Id",
+          "type": "integer"
+        },
+        "stress": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Stress"
+        },
+        "ipa_display": {
+          "title": "Ipa Display",
+          "type": "string"
+        },
+        "selection_method": {
+          "enum": [
+            "sole_variant",
+            "policy_first_listed",
+            "manual_override",
+            "alignment_match",
+            "unselected",
+            "none"
+          ],
+          "title": "Selection Method",
+          "type": "string"
+        }
+      },
+      "required": [
+        "index",
+        "word_index",
+        "token",
+        "variant_id",
+        "base_phone",
+        "phone_id",
+        "ipa_display",
+        "selection_method"
+      ],
+      "title": "CanonicalPhone",
+      "type": "object"
+    },
+    "NormalizationSummary": {
+      "additionalProperties": false,
+      "properties": {
+        "normalizer_version": {
+          "title": "Normalizer Version",
+          "type": "string"
+        },
+        "original_text": {
+          "title": "Original Text",
+          "type": "string"
+        },
+        "normalized_text": {
+          "title": "Normalized Text",
+          "type": "string"
+        },
+        "dropped_spans": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Dropped Spans",
+          "type": "array"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "normalizer_version",
+        "original_text",
+        "normalized_text"
+      ],
+      "title": "NormalizationSummary",
+      "type": "object"
+    },
+    "PhoneAlignment": {
+      "additionalProperties": false,
+      "description": "Aligned *target* phone interval.\n\nThree distinct notions are kept apart:\n\n* ``canonical_target_*``  - the phone the canonical pronunciation expects here;\n* ``aligned_*``           - the label the aligner placed on the interval;\n* ``realized_phone``      - what the learner actually produced. M2 cannot know this,\n  so it is always ``None``.",
+      "properties": {
+        "phone_index": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Phone Index"
+        },
+        "interval_index": {
+          "minimum": 0,
+          "title": "Interval Index",
+          "type": "integer"
+        },
+        "word_index": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Word Index"
+        },
+        "aligned_label": {
+          "title": "Aligned Label",
+          "type": "string"
+        },
+        "label_role": {
+          "enum": [
+            "word",
+            "phone",
+            "silence",
+            "oov_marker",
+            "unknown"
+          ],
+          "title": "Label Role",
+          "type": "string"
+        },
+        "aligned_base_phone": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Aligned Base Phone"
+        },
+        "aligned_stress": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Aligned Stress"
+        },
+        "aligned_phone_id": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Aligned Phone Id"
+        },
+        "canonical_phone_index": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Canonical Phone Index"
+        },
+        "canonical_target_phone": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Canonical Target Phone"
+        },
+        "canonical_target_stress": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Canonical Target Stress"
+        },
+        "start_time": {
+          "minimum": 0,
+          "title": "Start Time",
+          "type": "number"
+        },
+        "end_time": {
+          "title": "End Time",
+          "type": "number"
+        },
+        "source_tier": {
+          "title": "Source Tier",
+          "type": "string"
+        },
+        "source_file": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source File"
+        },
+        "realized_phone": {
+          "default": null,
+          "title": "Realized Phone",
+          "type": "null"
+        },
+        "realized_phone_status": {
+          "const": "not_determined_by_forced_alignment",
+          "default": "not_determined_by_forced_alignment",
+          "title": "Realized Phone Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "interval_index",
+        "aligned_label",
+        "label_role",
+        "start_time",
+        "end_time",
+        "source_tier"
+      ],
+      "title": "PhoneAlignment",
+      "type": "object"
+    },
+    "PronunciationVariant": {
+      "additionalProperties": false,
+      "properties": {
+        "variant_id": {
+          "title": "Variant Id",
+          "type": "string"
+        },
+        "source": {
+          "title": "Source",
+          "type": "string"
+        },
+        "source_detail": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Detail"
+        },
+        "raw_arpabet": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Raw Arpabet",
+          "type": "array"
+        },
+        "base_phones": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Base Phones",
+          "type": "array"
+        },
+        "stress": {
+          "items": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "title": "Stress",
+          "type": "array"
+        },
+        "phone_ids": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Phone Ids",
+          "type": "array"
+        },
+        "ipa_display": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Ipa Display",
+          "type": "array"
+        },
+        "approximate_mapping": {
+          "default": false,
+          "title": "Approximate Mapping",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "variant_id",
+        "source",
+        "raw_arpabet",
+        "base_phones",
+        "stress",
+        "phone_ids",
+        "ipa_display"
+      ],
+      "title": "PronunciationVariant",
+      "type": "object"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "asa_m2_version": {
+          "title": "Asa M2 Version",
+          "type": "string"
+        },
+        "schema_version": {
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "created_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Created At"
+        },
+        "config_fingerprint": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Config Fingerprint"
+        },
+        "inventory": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Inventory",
+          "type": "object"
+        },
+        "g2p_sources": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "title": "G2P Sources",
+          "type": "object"
+        },
+        "python_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Python Version"
+        },
+        "platform": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Platform"
+        },
+        "inputs": {
+          "additionalProperties": true,
+          "title": "Inputs",
+          "type": "object"
+        }
+      },
+      "required": [
+        "asa_m2_version"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    },
+    "QualityFlag": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "info",
+            "warning",
+            "error"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "scope": {
+          "enum": [
+            "sample",
+            "word",
+            "phone",
+            "audio",
+            "corpus"
+          ],
+          "title": "Scope",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "word_index": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Word Index"
+        },
+        "phone_index": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Phone Index"
+        },
+        "start_time": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Start Time"
+        },
+        "end_time": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "End Time"
+        },
+        "details": {
+          "additionalProperties": true,
+          "title": "Details",
+          "type": "object"
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "scope",
+        "message"
+      ],
+      "title": "QualityFlag",
+      "type": "object"
+    },
+    "Span": {
+      "additionalProperties": false,
+      "description": "Character offsets into the ORIGINAL text (end exclusive).",
+      "properties": {
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        },
+        "end": {
+          "minimum": 0,
+          "title": "End",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Span",
+      "type": "object"
+    },
+    "TokenRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "word_index": {
+          "minimum": 0,
+          "title": "Word Index",
+          "type": "integer"
+        },
+        "original_token": {
+          "title": "Original Token",
+          "type": "string"
+        },
+        "normalized_token": {
+          "title": "Normalized Token",
+          "type": "string"
+        },
+        "original_span": {
+          "$ref": "#/$defs/Span"
+        },
+        "token_kind": {
+          "title": "Token Kind",
+          "type": "string"
+        },
+        "normalization_rules": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Normalization Rules",
+          "type": "array"
+        },
+        "supported": {
+          "default": true,
+          "title": "Supported",
+          "type": "boolean"
+        },
+        "variants": {
+          "items": {
+            "$ref": "#/$defs/PronunciationVariant"
+          },
+          "title": "Variants",
+          "type": "array"
+        },
+        "selected_variant_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Selected Variant Id"
+        },
+        "selection_method": {
+          "default": "none",
+          "enum": [
+            "sole_variant",
+            "policy_first_listed",
+            "manual_override",
+            "alignment_match",
+            "unselected",
+            "none"
+          ],
+          "title": "Selection Method",
+          "type": "string"
+        },
+        "pronunciation_source": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pronunciation Source"
+        },
+        "resolution_status": {
+          "default": "unresolved",
+          "enum": [
+            "resolved",
+            "resolved_fallback",
+            "unresolved"
+          ],
+          "title": "Resolution Status",
+          "type": "string"
+        },
+        "resolution_reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Resolution Reason"
+        },
+        "approved_for_alignment": {
+          "default": false,
+          "title": "Approved For Alignment",
+          "type": "boolean"
+        },
+        "flags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Flags",
+          "type": "array"
+        }
+      },
+      "required": [
+        "word_index",
+        "original_token",
+        "normalized_token",
+        "original_span",
+        "token_kind"
+      ],
+      "title": "TokenRecord",
+      "type": "object"
+    },
+    "WordAlignment": {
+      "additionalProperties": false,
+      "properties": {
+        "word_index": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Word Index"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "label_role": {
+          "enum": [
+            "word",
+            "phone",
+            "silence",
+            "oov_marker",
+            "unknown"
+          ],
+          "title": "Label Role",
+          "type": "string"
+        },
+        "start_time": {
+          "minimum": 0,
+          "title": "Start Time",
+          "type": "number"
+        },
+        "end_time": {
+          "title": "End Time",
+          "type": "number"
+        },
+        "source_tier": {
+          "title": "Source Tier",
+          "type": "string"
+        },
+        "interval_index": {
+          "minimum": 0,
+          "title": "Interval Index",
+          "type": "integer"
+        },
+        "source_file": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source File"
+        }
+      },
+      "required": [
+        "label",
+        "label_role",
+        "start_time",
+        "end_time",
+        "source_tier",
+        "interval_index"
+      ],
+      "title": "WordAlignment",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Canonical per-recording output consumed by M3/M4.",
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "sample_id": {
+      "title": "Sample Id",
+      "type": "string"
+    },
+    "speaker_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Speaker Id"
+    },
+    "reference_text": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reference Text"
+    },
+    "human_verbatim": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Human Verbatim"
+    },
+    "g2p_input_field": {
+      "default": "reference_text",
+      "enum": [
+        "reference_text",
+        "human_verbatim"
+      ],
+      "title": "G2P Input Field",
+      "type": "string"
+    },
+    "normalization": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/NormalizationSummary"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "tokens": {
+      "items": {
+        "$ref": "#/$defs/TokenRecord"
+      },
+      "title": "Tokens",
+      "type": "array"
+    },
+    "canonical_phones": {
+      "items": {
+        "$ref": "#/$defs/CanonicalPhone"
+      },
+      "title": "Canonical Phones",
+      "type": "array"
+    },
+    "word_alignments": {
+      "items": {
+        "$ref": "#/$defs/WordAlignment"
+      },
+      "title": "Word Alignments",
+      "type": "array"
+    },
+    "phone_alignments": {
+      "items": {
+        "$ref": "#/$defs/PhoneAlignment"
+      },
+      "title": "Phone Alignments",
+      "type": "array"
+    },
+    "alignment_metadata": {
+      "$ref": "#/$defs/AlignmentMetadata"
+    },
+    "quality_flags": {
+      "items": {
+        "$ref": "#/$defs/QualityFlag"
+      },
+      "title": "Quality Flags",
+      "type": "array"
+    },
+    "provenance": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Provenance"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "sample_id"
+  ],
+  "title": "ASA M2 SampleRecord",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

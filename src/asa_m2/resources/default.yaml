@@ -1,0 +1,31 @@
+# ASA M2 default configuration.
+# Section files are composed with `include`; keys in this file override included ones.
+# Relative paths are resolved against THIS file's directory.
+include:
+  - g2p.yaml
+  - alignment.yaml
+  - audio.yaml
+
+project:
+  name: ASA_M2
+  schema_version: "1.0"
+
+phonemes:
+  inventory_path: phoneme_inventory.json
+  mapping_path: phoneme_mapping.json
+  preserve_stress: true      # false => aligner dictionary uses base phones without stress digits
+
+corpus:
+  transcript_extension: ".lab"   # MFA reads .lab with priority over .txt (verified in 3.4.3 source)
+  on_error: fail                 # fail | skip (skipped rows are recorded in the corpus manifest)
+
+speaker:
+  missing_id_policy: unique_per_recording   # unique_per_recording | error | shared
+  shared_speaker_id: null                   # required only when policy is "shared"
+  grouping: by_speaker_id                   # by_speaker_id | per_recording
+
+output:
+  include_provenance: true
+  include_quality_flags: true
+  include_timestamps: true   # set false for byte-reproducible output
+  json_indent: 2

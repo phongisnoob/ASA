@@ -1,0 +1,588 @@
+{
+  "schema_version": "1.0",
+  "inventory_id": "asa-arpabet-cmu39",
+  "inventory_version": "1.0.0",
+  "description": "Canonical English phone inventory for ASA M2/M3/M4 (CMUdict ARPABET, 39 base phones). Stress is stored separately from phone identity.",
+  "canonical_representation": "ARPABET",
+  "display_representation": "IPA (General American; display only)",
+  "id_policy": {
+    "assignment": "alphabetical over ARPABET base phones, frozen at 1.0.0",
+    "evolution": "append-only: new phones receive new IDs; existing IDs never change",
+    "reserved_ids": {
+      "0": "CTC blank by convention (not a phoneme, not silence)"
+    }
+  },
+  "stress": {
+    "values": [
+      0,
+      1,
+      2
+    ],
+    "labels": {
+      "0": "unstressed",
+      "1": "primary",
+      "2": "secondary"
+    },
+    "applies_to": "vowel",
+    "separate_from_phone_identity": true,
+    "symbol_pattern": "^([A-Z]+)([012])?$",
+    "note": "ARPABET stress digits are parsed off the symbol (AY1 -> AY + 1). Phone IDs identify the base phone only."
+  },
+  "special_symbols": [
+    {
+      "symbol": "<blank>",
+      "id": 0,
+      "role": "ctc_blank",
+      "is_phoneme": false,
+      "is_silence": false,
+      "description": "CTC blank index by convention. Not a phoneme and not automatically silence. M3 may relocate it in its output layer; if so it must document the offset."
+    }
+  ],
+  "silence_policy": {
+    "has_silence_class": false,
+    "note": "No silence class is defined because the downstream acoustic model's support is unknown. Aligner silence labels (sil, sp, <eps>, empty) are kept as label roles in alignment output, never as inventory phones."
+  },
+  "phones": [
+    {
+      "id": 1,
+      "arpabet": "AA",
+      "ipa": "ɑ",
+      "ipa_variants": [],
+      "category": "vowel",
+      "stress_bearing": true,
+      "articulatory": {
+        "height": "open",
+        "backness": "back",
+        "rounding": "unrounded",
+        "diphthong": false,
+        "rhotic": false
+      }
+    },
+    {
+      "id": 2,
+      "arpabet": "AE",
+      "ipa": "æ",
+      "ipa_variants": [],
+      "category": "vowel",
+      "stress_bearing": true,
+      "articulatory": {
+        "height": "near-open",
+        "backness": "front",
+        "rounding": "unrounded",
+        "diphthong": false,
+        "rhotic": false
+      }
+    },
+    {
+      "id": 3,
+      "arpabet": "AH",
+      "ipa": "ʌ",
+      "ipa_variants": [
+        "ə"
+      ],
+      "category": "vowel",
+      "stress_bearing": true,
+      "articulatory": {
+        "height": "open-mid",
+        "backness": "back",
+        "rounding": "unrounded",
+        "diphthong": false,
+        "rhotic": false
+      }
+    },
+    {
+      "id": 4,
+      "arpabet": "AO",
+      "ipa": "ɔ",
+      "ipa_variants": [],
+      "category": "vowel",
+      "stress_bearing": true,
+      "articulatory": {
+        "height": "open-mid",
+        "backness": "back",
+        "rounding": "rounded",
+        "diphthong": false,
+        "rhotic": false
+      }
+    },
+    {
+      "id": 5,
+      "arpabet": "AW",
+      "ipa": "aʊ",
+      "ipa_variants": [],
+      "category": "vowel",
+      "stress_bearing": true,
+      "articulatory": {
+        "height": "open",
+        "backness": "front-to-back",
+        "rounding": "unrounded-to-rounded",
+        "diphthong": true,
+        "rhotic": false
+      }
+    },
+    {
+      "id": 6,
+      "arpabet": "AY",
+      "ipa": "aɪ",
+      "ipa_variants": [],
+      "category": "vowel",
+      "stress_bearing": true,
+      "articulatory": {
+        "height": "open",
+        "backness": "front-to-front",
+        "rounding": "unrounded",
+        "diphthong": true,
+        "rhotic": false
+      }
+    },
+    {
+      "id": 7,
+      "arpabet": "B",
+      "ipa": "b",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "bilabial",
+        "manner": "plosive",
+        "voiced": true
+      }
+    },
+    {
+      "id": 8,
+      "arpabet": "CH",
+      "ipa": "tʃ",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "postalveolar",
+        "manner": "affricate",
+        "voiced": false
+      }
+    },
+    {
+      "id": 9,
+      "arpabet": "D",
+      "ipa": "d",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "alveolar",
+        "manner": "plosive",
+        "voiced": true
+      }
+    },
+    {
+      "id": 10,
+      "arpabet": "DH",
+      "ipa": "ð",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "dental",
+        "manner": "fricative",
+        "voiced": true
+      }
+    },
+    {
+      "id": 11,
+      "arpabet": "EH",
+      "ipa": "ɛ",
+      "ipa_variants": [],
+      "category": "vowel",
+      "stress_bearing": true,
+      "articulatory": {
+        "height": "open-mid",
+        "backness": "front",
+        "rounding": "unrounded",
+        "diphthong": false,
+        "rhotic": false
+      }
+    },
+    {
+      "id": 12,
+      "arpabet": "ER",
+      "ipa": "ɝ",
+      "ipa_variants": [
+        "ɚ"
+      ],
+      "category": "vowel",
+      "stress_bearing": true,
+      "articulatory": {
+        "height": "mid",
+        "backness": "central",
+        "rounding": "unrounded",
+        "diphthong": false,
+        "rhotic": true
+      }
+    },
+    {
+      "id": 13,
+      "arpabet": "EY",
+      "ipa": "eɪ",
+      "ipa_variants": [],
+      "category": "vowel",
+      "stress_bearing": true,
+      "articulatory": {
+        "height": "close-mid",
+        "backness": "front-to-front",
+        "rounding": "unrounded",
+        "diphthong": true,
+        "rhotic": false
+      }
+    },
+    {
+      "id": 14,
+      "arpabet": "F",
+      "ipa": "f",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "labiodental",
+        "manner": "fricative",
+        "voiced": false
+      }
+    },
+    {
+      "id": 15,
+      "arpabet": "G",
+      "ipa": "ɡ",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "velar",
+        "manner": "plosive",
+        "voiced": true
+      }
+    },
+    {
+      "id": 16,
+      "arpabet": "HH",
+      "ipa": "h",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "glottal",
+        "manner": "fricative",
+        "voiced": false
+      }
+    },
+    {
+      "id": 17,
+      "arpabet": "IH",
+      "ipa": "ɪ",
+      "ipa_variants": [],
+      "category": "vowel",
+      "stress_bearing": true,
+      "articulatory": {
+        "height": "near-close",
+        "backness": "near-front",
+        "rounding": "unrounded",
+        "diphthong": false,
+        "rhotic": false
+      }
+    },
+    {
+      "id": 18,
+      "arpabet": "IY",
+      "ipa": "i",
+      "ipa_variants": [],
+      "category": "vowel",
+      "stress_bearing": true,
+      "articulatory": {
+        "height": "close",
+        "backness": "front",
+        "rounding": "unrounded",
+        "diphthong": false,
+        "rhotic": false
+      }
+    },
+    {
+      "id": 19,
+      "arpabet": "JH",
+      "ipa": "dʒ",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "postalveolar",
+        "manner": "affricate",
+        "voiced": true
+      }
+    },
+    {
+      "id": 20,
+      "arpabet": "K",
+      "ipa": "k",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "velar",
+        "manner": "plosive",
+        "voiced": false
+      }
+    },
+    {
+      "id": 21,
+      "arpabet": "L",
+      "ipa": "l",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "alveolar",
+        "manner": "lateral-approximant",
+        "voiced": true
+      }
+    },
+    {
+      "id": 22,
+      "arpabet": "M",
+      "ipa": "m",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "bilabial",
+        "manner": "nasal",
+        "voiced": true
+      }
+    },
+    {
+      "id": 23,
+      "arpabet": "N",
+      "ipa": "n",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "alveolar",
+        "manner": "nasal",
+        "voiced": true
+      }
+    },
+    {
+      "id": 24,
+      "arpabet": "NG",
+      "ipa": "ŋ",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "velar",
+        "manner": "nasal",
+        "voiced": true
+      }
+    },
+    {
+      "id": 25,
+      "arpabet": "OW",
+      "ipa": "oʊ",
+      "ipa_variants": [],
+      "category": "vowel",
+      "stress_bearing": true,
+      "articulatory": {
+        "height": "close-mid",
+        "backness": "back",
+        "rounding": "rounded",
+        "diphthong": true,
+        "rhotic": false
+      }
+    },
+    {
+      "id": 26,
+      "arpabet": "OY",
+      "ipa": "ɔɪ",
+      "ipa_variants": [],
+      "category": "vowel",
+      "stress_bearing": true,
+      "articulatory": {
+        "height": "open-mid",
+        "backness": "back-to-front",
+        "rounding": "rounded-to-unrounded",
+        "diphthong": true,
+        "rhotic": false
+      }
+    },
+    {
+      "id": 27,
+      "arpabet": "P",
+      "ipa": "p",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "bilabial",
+        "manner": "plosive",
+        "voiced": false
+      }
+    },
+    {
+      "id": 28,
+      "arpabet": "R",
+      "ipa": "ɹ",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "alveolar",
+        "manner": "approximant",
+        "voiced": true
+      }
+    },
+    {
+      "id": 29,
+      "arpabet": "S",
+      "ipa": "s",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "alveolar",
+        "manner": "fricative",
+        "voiced": false
+      }
+    },
+    {
+      "id": 30,
+      "arpabet": "SH",
+      "ipa": "ʃ",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "postalveolar",
+        "manner": "fricative",
+        "voiced": false
+      }
+    },
+    {
+      "id": 31,
+      "arpabet": "T",
+      "ipa": "t",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "alveolar",
+        "manner": "plosive",
+        "voiced": false
+      }
+    },
+    {
+      "id": 32,
+      "arpabet": "TH",
+      "ipa": "θ",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "dental",
+        "manner": "fricative",
+        "voiced": false
+      }
+    },
+    {
+      "id": 33,
+      "arpabet": "UH",
+      "ipa": "ʊ",
+      "ipa_variants": [],
+      "category": "vowel",
+      "stress_bearing": true,
+      "articulatory": {
+        "height": "near-close",
+        "backness": "near-back",
+        "rounding": "rounded",
+        "diphthong": false,
+        "rhotic": false
+      }
+    },
+    {
+      "id": 34,
+      "arpabet": "UW",
+      "ipa": "u",
+      "ipa_variants": [],
+      "category": "vowel",
+      "stress_bearing": true,
+      "articulatory": {
+        "height": "close",
+        "backness": "back",
+        "rounding": "rounded",
+        "diphthong": false,
+        "rhotic": false
+      }
+    },
+    {
+      "id": 35,
+      "arpabet": "V",
+      "ipa": "v",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "labiodental",
+        "manner": "fricative",
+        "voiced": true
+      }
+    },
+    {
+      "id": 36,
+      "arpabet": "W",
+      "ipa": "w",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "labial-velar",
+        "manner": "approximant",
+        "voiced": true
+      }
+    },
+    {
+      "id": 37,
+      "arpabet": "Y",
+      "ipa": "j",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "palatal",
+        "manner": "approximant",
+        "voiced": true
+      }
+    },
+    {
+      "id": 38,
+      "arpabet": "Z",
+      "ipa": "z",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "alveolar",
+        "manner": "fricative",
+        "voiced": true
+      }
+    },
+    {
+      "id": 39,
+      "arpabet": "ZH",
+      "ipa": "ʒ",
+      "ipa_variants": [],
+      "category": "consonant",
+      "stress_bearing": false,
+      "articulatory": {
+        "place": "postalveolar",
+        "manner": "fricative",
+        "voiced": true
+      }
+    }
+  ]
+}

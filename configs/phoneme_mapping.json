@@ -1,0 +1,427 @@
+{
+  "schema_version": "1.0",
+  "inventory_id": "asa-arpabet-cmu39",
+  "inventory_version": "1.0.0",
+  "mappings": {
+    "espeak_en_us_ipa": {
+      "description": "eSpeak-ng IPA phoneme units -> canonical ARPABET base phones.",
+      "source_command": "espeak-ng -q -v en-us --ipa --sep=_ -- <word>",
+      "verified_with": "espeak-ng 1.51 (Ubuntu 24.04 package), en-us voice",
+      "stress_marks": {
+        "primary": "ˈ",
+        "secondary": "ˌ"
+      },
+      "stress_assignment": "The stress mark is stripped from the unit it prefixes. Primary -> 1, secondary -> 2, applied to the FIRST vowel in the unit's ARPABET list; any further vowels in the same unit and all unmarked vowels get stress 0.",
+      "entries": {
+        "b": {
+          "arpabet": [
+            "B"
+          ],
+          "confidence": "exact"
+        },
+        "d": {
+          "arpabet": [
+            "D"
+          ],
+          "confidence": "exact"
+        },
+        "f": {
+          "arpabet": [
+            "F"
+          ],
+          "confidence": "exact"
+        },
+        "ɡ": {
+          "arpabet": [
+            "G"
+          ],
+          "confidence": "exact",
+          "note": "U+0261 LATIN SMALL LETTER SCRIPT G"
+        },
+        "h": {
+          "arpabet": [
+            "HH"
+          ],
+          "confidence": "exact"
+        },
+        "j": {
+          "arpabet": [
+            "Y"
+          ],
+          "confidence": "exact"
+        },
+        "k": {
+          "arpabet": [
+            "K"
+          ],
+          "confidence": "exact"
+        },
+        "l": {
+          "arpabet": [
+            "L"
+          ],
+          "confidence": "exact"
+        },
+        "m": {
+          "arpabet": [
+            "M"
+          ],
+          "confidence": "exact"
+        },
+        "n": {
+          "arpabet": [
+            "N"
+          ],
+          "confidence": "exact"
+        },
+        "ŋ": {
+          "arpabet": [
+            "NG"
+          ],
+          "confidence": "exact"
+        },
+        "p": {
+          "arpabet": [
+            "P"
+          ],
+          "confidence": "exact"
+        },
+        "ɹ": {
+          "arpabet": [
+            "R"
+          ],
+          "confidence": "exact"
+        },
+        "s": {
+          "arpabet": [
+            "S"
+          ],
+          "confidence": "exact"
+        },
+        "ʃ": {
+          "arpabet": [
+            "SH"
+          ],
+          "confidence": "exact"
+        },
+        "t": {
+          "arpabet": [
+            "T"
+          ],
+          "confidence": "exact"
+        },
+        "θ": {
+          "arpabet": [
+            "TH"
+          ],
+          "confidence": "exact"
+        },
+        "ð": {
+          "arpabet": [
+            "DH"
+          ],
+          "confidence": "exact"
+        },
+        "v": {
+          "arpabet": [
+            "V"
+          ],
+          "confidence": "exact"
+        },
+        "w": {
+          "arpabet": [
+            "W"
+          ],
+          "confidence": "exact"
+        },
+        "z": {
+          "arpabet": [
+            "Z"
+          ],
+          "confidence": "exact"
+        },
+        "ʒ": {
+          "arpabet": [
+            "ZH"
+          ],
+          "confidence": "exact"
+        },
+        "tʃ": {
+          "arpabet": [
+            "CH"
+          ],
+          "confidence": "exact",
+          "note": "affricate emitted as one unit"
+        },
+        "dʒ": {
+          "arpabet": [
+            "JH"
+          ],
+          "confidence": "exact",
+          "note": "affricate emitted as one unit"
+        },
+        "əl": {
+          "arpabet": [
+            "AH",
+            "L"
+          ],
+          "confidence": "approximate",
+          "note": "syllabic /l/ expanded as AH + L"
+        },
+        "n̩": {
+          "arpabet": [
+            "AH",
+            "N"
+          ],
+          "confidence": "approximate",
+          "note": "syllabic /n/ (n + U+0329) expanded as AH + N"
+        },
+        "æ": {
+          "arpabet": [
+            "AE"
+          ],
+          "confidence": "exact"
+        },
+        "ɛ": {
+          "arpabet": [
+            "EH"
+          ],
+          "confidence": "exact"
+        },
+        "ɪ": {
+          "arpabet": [
+            "IH"
+          ],
+          "confidence": "exact"
+        },
+        "i": {
+          "arpabet": [
+            "IY"
+          ],
+          "confidence": "exact",
+          "note": "happy-vowel / word-final i"
+        },
+        "iː": {
+          "arpabet": [
+            "IY"
+          ],
+          "confidence": "exact"
+        },
+        "ɑː": {
+          "arpabet": [
+            "AA"
+          ],
+          "confidence": "exact"
+        },
+        "ɑ": {
+          "arpabet": [
+            "AA"
+          ],
+          "confidence": "exact"
+        },
+        "ɔ": {
+          "arpabet": [
+            "AO"
+          ],
+          "confidence": "exact"
+        },
+        "ɔː": {
+          "arpabet": [
+            "AO"
+          ],
+          "confidence": "exact"
+        },
+        "oː": {
+          "arpabet": [
+            "AO"
+          ],
+          "confidence": "exact",
+          "note": "followed by a separate ɹ unit in rhotic contexts (e.g. 'boring' b_ˈoː_ɹ_ɪ_ŋ)"
+        },
+        "o": {
+          "arpabet": [
+            "AO"
+          ],
+          "confidence": "approximate",
+          "note": "bare 'o' occurs rarely (e.g. 'tolkien'); mapped to AO"
+        },
+        "ʊ": {
+          "arpabet": [
+            "UH"
+          ],
+          "confidence": "exact"
+        },
+        "uː": {
+          "arpabet": [
+            "UW"
+          ],
+          "confidence": "exact"
+        },
+        "ʌ": {
+          "arpabet": [
+            "AH"
+          ],
+          "confidence": "exact"
+        },
+        "ɐ": {
+          "arpabet": [
+            "AH"
+          ],
+          "confidence": "approximate",
+          "note": "near-open central; mapped to AH"
+        },
+        "ə": {
+          "arpabet": [
+            "AH"
+          ],
+          "confidence": "exact",
+          "note": "schwa; stress 0 unless a stress mark precedes it"
+        },
+        "ᵻ": {
+          "arpabet": [
+            "IH"
+          ],
+          "confidence": "approximate",
+          "note": "eSpeak reduced vowel between ɪ and ə; CMUdict uses IH0 or AH0 depending on word"
+        },
+        "ɜː": {
+          "arpabet": [
+            "ER"
+          ],
+          "confidence": "exact"
+        },
+        "ɚ": {
+          "arpabet": [
+            "ER"
+          ],
+          "confidence": "exact"
+        },
+        "eɪ": {
+          "arpabet": [
+            "EY"
+          ],
+          "confidence": "exact"
+        },
+        "aɪ": {
+          "arpabet": [
+            "AY"
+          ],
+          "confidence": "exact"
+        },
+        "ɔɪ": {
+          "arpabet": [
+            "OY"
+          ],
+          "confidence": "exact"
+        },
+        "aʊ": {
+          "arpabet": [
+            "AW"
+          ],
+          "confidence": "exact"
+        },
+        "oʊ": {
+          "arpabet": [
+            "OW"
+          ],
+          "confidence": "exact"
+        },
+        "ɑːɹ": {
+          "arpabet": [
+            "AA",
+            "R"
+          ],
+          "confidence": "exact"
+        },
+        "ɑɹ": {
+          "arpabet": [
+            "AA",
+            "R"
+          ],
+          "confidence": "exact"
+        },
+        "ɔːɹ": {
+          "arpabet": [
+            "AO",
+            "R"
+          ],
+          "confidence": "exact"
+        },
+        "oːɹ": {
+          "arpabet": [
+            "AO",
+            "R"
+          ],
+          "confidence": "exact"
+        },
+        "ɛɹ": {
+          "arpabet": [
+            "EH",
+            "R"
+          ],
+          "confidence": "exact"
+        },
+        "ɪɹ": {
+          "arpabet": [
+            "IH",
+            "R"
+          ],
+          "confidence": "exact"
+        },
+        "ʊɹ": {
+          "arpabet": [
+            "UH",
+            "R"
+          ],
+          "confidence": "exact"
+        },
+        "iə": {
+          "arpabet": [
+            "IY",
+            "AH"
+          ],
+          "confidence": "approximate",
+          "note": "as in 'lithium', 'gregarious'"
+        },
+        "aɪɚ": {
+          "arpabet": [
+            "AY",
+            "ER"
+          ],
+          "confidence": "approximate",
+          "note": "as in 'fire'; CMUdict also lists AY R variants"
+        },
+        "aɪə": {
+          "arpabet": [
+            "AY",
+            "AH"
+          ],
+          "confidence": "approximate",
+          "note": "as in 'diet'"
+        }
+      },
+      "unmapped_by_design": {
+        "ɾ": "alveolar flap: allophone of /t/ or /d/ ('platter' vs 'ladder'); mapping to T or D would be a guess, so words containing it are reported as unresolved",
+        "ʔ": "glottal stop: no CMUdict phone (CMUdict writes T, as in 'shorten'); not guessed",
+        "x": "voiceless velar fricative: not part of the English ARPABET inventory",
+        "ɬ": "voiceless lateral fricative: not part of the English ARPABET inventory",
+        "r": "alveolar trill: not equivalent to ARPABET R (ɹ); not guessed"
+      }
+    },
+    "mfa_english_us_arpa": {
+      "description": "Labels of MFA ARPABET dictionaries/models -> canonical phones.",
+      "label_policy": "identity_after_stress_parse",
+      "note": "Verified against the published english_us_arpa dictionary v2.0.0: phone labels are ARPABET with stress digits on vowels (e.g. IH0, AO1) plus 'spn' for OOV. Labels not in the inventory are reported, never remapped.",
+      "silence_labels": [
+        "",
+        "sil",
+        "sp",
+        "<eps>"
+      ],
+      "oov_labels": [
+        "spn",
+        "<unk>"
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+# Exact versions the build was TESTED with (Python 3.12.3, Ubuntu 24.04).
+# pyproject.toml declares looser lower bounds; use this file for reproducible installs:
+#     pip install -r requirements.txt && pip install -e . --no-deps
+# Core M2 needs no GPU and no network access at run time.
+cmudict==1.1.3
+praatio==6.2.2
+soundfile==0.14.0
+numpy==2.5.4
+scipy==1.18.1
+PyYAML==6.0.3
+pydantic==2.14.3

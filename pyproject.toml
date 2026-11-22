@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "asa-m2"
+version = "1.0.0"
+description = "ASA Module M2 - Phonetic Front-end: text normalisation, G2P, phone inventory, corpus preparation, MFA alignment wrapper, TextGrid parsing and alignment QC."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "ASA Research Team" }]
+keywords = ["speech", "forced-alignment", "g2p", "pronunciation", "L2", "montreal-forced-aligner"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering",
+]
+dependencies = [
+  "cmudict>=1.0.13",
+  "praatio>=6.0",
+  "soundfile>=0.12",
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "PyYAML>=6.0",
+  "pydantic>=2.5",
+]
+
+[project.optional-dependencies]
+# Optional word-level aligner adapter (large model, GPU recommended). NOT needed for core M2.
+qwen = ["qwen-asr"]
+dev = ["pytest>=8", "pytest-cov", "ruff", "mypy", "types-PyYAML"]
+
+[project.scripts]
+asa-m2 = "asa_m2.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+asa_m2 = ["resources/*.yaml", "resources/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = [
+  "integration: tests that need external software (MFA, eSpeak-ng, Qwen); skipped when unavailable",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+warn_unused_ignores = true
+check_untyped_defs = true
+plugins = ["pydantic.mypy"]

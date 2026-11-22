@@ -1,0 +1,6 @@
+# Example custom pronunciation lexicon (ARPABET with stress digits).
+# One line per variant; several lines for one word = several variants.
+hanoi    HH AA0 N OY1
+hanoi    HH AE0 N OY1
+# Manual override of the variant choice (index is 1-based over the final candidate list):
+# !select hanoi 1

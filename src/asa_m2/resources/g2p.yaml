@@ -1,0 +1,36 @@
+# Text normalisation + grapheme-to-phoneme settings.
+normalization:
+  lowercase: true
+  normalize_unicode_apostrophes: true
+  hyphen_policy: split        # split | keep
+  numbers: expand             # expand | flag   (expansion is ONE possible reading; see docs)
+  ordinals: expand
+  abbreviations:
+    mr: mister
+    mrs: missus
+    dr: doctor
+    prof: professor
+    jr: junior
+    sr: senior
+    vs: versus
+    etc: et cetera
+  symbols:
+    "&": and
+    "%": percent
+    "+": plus
+    "=": equals
+    "@": at
+
+g2p:
+  primary_backend: cmudict
+  fallback_backend: null      # set to "espeak" to opt in to eSpeak-ng fallback for OOV words
+  allow_multiple_variants: true
+  variant_policy: keep_all    # keep_all | first_listed (explicit, flagged opt-in)
+  fail_on_unresolved_oov: true
+  custom_lexicon_path: null   # path to a lexicon file, see docs
+  custom_lexicon_mode: override   # override | augment
+  espeak:
+    executable: espeak-ng
+    voice: en-us
+    timeout_s: 10
+    mapping_name: espeak_en_us_ipa

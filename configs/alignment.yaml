@@ -1,0 +1,58 @@
+# Forced-alignment settings. MFA invocation details were verified against the
+# MFA 3.4.3 command-line source (see docs/troubleshooting.md and README).
+alignment:
+  primary: mfa
+  optional_word_aligner: qwen    # optional adapter; never required
+  export_textgrid: true
+  export_json: true
+
+  mfa:
+    mode: legacy                 # legacy => `mfa align`; hf => `mfa align_hf`
+    executable: mfa
+    dictionary: generated        # "generated" = dictionary written by prepare-corpus, or an MFA name/path
+    acoustic_model: null         # REQUIRED for mode legacy, e.g. a model name or a path
+    hf_model_id: null            # REQUIRED for mode hf
+    hf_dialect: null
+    hf_use_g2p: false
+    output_format: long_textgrid
+    num_jobs: null               # null => MFA default
+    beam: null
+    retry_beam: null
+    single_speaker: false
+    textgrid_cleanup: null       # null => MFA default (true/false passes --textgrid_cleanup/--no_textgrid_cleanup)
+    temporary_directory: null
+    mfa_root_dir: null           # exported as MFA_ROOT_DIR for the subprocess
+    ignore_oovs: false
+    fine_tune: false
+    extra_args: []
+    timeout_s: 7200
+    verified_versions: ["3.4.3"]
+    supported_version_prefixes: ["3.4."]
+    allow_unverified_versions: false
+    fail_on_missing_output: true
+    run_mfa_validate: false
+
+  qwen:
+    model_name: Qwen/Qwen3-ForcedAligner-0.6B
+    language: English
+    device: auto
+    dtype: bfloat16
+    max_audio_seconds: 300
+
+  textgrid:
+    word_tier_names: ["words", "word"]
+    phone_tier_names: ["phones", "phone"]
+    allow_speaker_prefix: true
+    extra_silence_labels: []
+    extra_oov_labels: []
+
+  qc:
+    # Alignment sanity thresholds. These are NOT pronunciation-error thresholds.
+    min_phone_duration_s: 0.02
+    max_phone_duration_s: 0.8
+    min_word_duration_s: 0.03
+    max_word_duration_s: 3.0
+    gap_tolerance_s: 0.001
+    overlap_tolerance_s: 0.000001
+    duration_mismatch_tolerance_s: 0.05
+    boundary_tolerance_s: 0.02
