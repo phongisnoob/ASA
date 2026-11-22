@@ -1,0 +1,4 @@
+sample_id,audio_path,reference_text,speaker_id,human_verbatim
+S001,audio/ex_001.wav,I think this is important.,SPK_001,
+S002,audio/ex_002.wav,She sells sea shells by the sea shore.,SPK_002,she sells see shells by the sea shore
+S003,audio/ex_003.wav,Hello world,,
