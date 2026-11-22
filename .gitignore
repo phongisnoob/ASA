@@ -1,0 +1,37 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environments
+.venv/
+venv/
+.env
+
+# Data (never commit learner audio or derived corpora)
+data/raw/*
+data/processed/*
+data/outputs/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/outputs/.gitkeep
+
+# Large model artefacts
+*.ckpt
+*.pt
+*.safetensors
+*.bin
+
+# Generated example audio (re-create with examples/make_example_audio.py)
+examples/audio/
+examples/audio_demo_backup/
+examples/*_backup.*
+
+# Downloaded corpora and other large local assets
+downloads/
